@@ -85,7 +85,7 @@ def teleport(k,direction,n=1):
 		time.sleep(0.025)
 		k.release_key('space')
 		k.release_key(direction)
-		time.sleep(0.38)
+		time.sleep(0.35)
 		
 
 def pick_up(k):
@@ -94,23 +94,23 @@ def pick_up(k):
 def random_move(k,direction,duration):
 	k.press_key(direction)
 	# k.press_key('z')
-	# time.sleep(at_least(duration))
+	time.sleep(at_least(duration))
 	# k.release_key('z')
 	k.release_key(direction)
-	if random.random() > 0.95:
-		k.tap_key('command')
-		time.sleep(0.3)
+	# if random.random() > 0.99:
+	# 	k.tap_key('command')
+	# 	time.sleep(0.3)
 
 def range_attack(k,t=1):
-	for i in range(t):
-		print('go left')
-		teleport(k,'left',2)
 
 	for j in range(t):
 		print('go right')
 		teleport(k,'right',2)
 		# add_MP(k)	
 
+	for i in range(t):
+		print('go left')
+		teleport(k,'left',2)
 
 def change_chanel(k):
 	time.sleep(4.5)
@@ -143,39 +143,55 @@ def repeat(key_value,interval,k = PyKeyboard(),r = True):
 
 def mage():
 	# shield 
-	repeat('7',50)
+	# repeat('7',50)
 	
-	
+	repeat('6',70)
 	# jing shen li
-	repeat('8',100)
+	repeat('8',50)
 
-	repeat('d',0.4)
+	repeat('d',0.35)
 	time.sleep(0.5)
 
-	repeat('l',70)
-	repeat('o',20)
+	repeat('l',90)
+	repeat('o',15)
 
+def mage_blizza():
+	# shield 
+	# repeat('7',50)
+	
+	repeat('f',1.1)
+	time.sleep(0.9)
+	repeat('l',5)
 
 if __name__ == '__main__':
 	print('Activate the application 2 seconds.')
 	time.sleep(2)
-
-	mage()
+	hour = 3600
+	mage_blizza()
 
 	k = PyKeyboard()
 	m = PyMouse()
 	k.tap_key('8')
 	#rest(k,m,0.1)
 
+
 	time.sleep(0.5)
 	start = time.time()
-	#buff(k)
-	for i in range(100000):
-		range_attack(k,7)
-		range_attack(k,7)
-		lei(k,1)
 
-		print('add MP')
+	while int(time.time() - start) % 60 == 0:
+		random_move(k,'left',0.1)
+		random_move(k,'right',0.1)
+
+	#buff(k)
+
+	# for i in range(10000):
+	# 	range_attack(k,9)
+
+	# 	print('add MP')
+	# 	if time.time() - start > 10*hour:
+	# 		print('try log out')
+	# 		log_out(k)
+
 		# if i %3 != 1:
 		# 	add_HP(k)
 		# 	add_MP(k)
